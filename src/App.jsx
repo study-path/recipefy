@@ -1,14 +1,12 @@
 import { Routes, Route } from "react-router";
 import "./App.css";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route
-          index
-          element={<div className="border-black border-2 h-screen">Hello</div>}
-        />
+        <Route index element={<HomePage />} />
         <Route
           path="/recipeDetail"
           element={
