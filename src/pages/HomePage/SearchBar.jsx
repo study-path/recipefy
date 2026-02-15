@@ -17,11 +17,11 @@ const SearchBar = () => {
   };
   return (
     <>
-      <div className="flex justify-center items-center m-2">
-        <div className="flex border-2 border-lime-300 bg-lime-200 m-2 p-2 rounded-full w-180">
-          <i className="pi pi-search text-lime-400 text-lg content-center"></i>
+      <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center m-2 gap-2 w-full px-4">
+        <div className="flex border-2 border-gray-300 bg-gray-200 m-2 p-2 rounded-full w-full sm:flex-1 sm:max-w-4xl items-center">
+          <i className="pi pi-search text-gray-400 text-lg px-2"></i>
           <input
-            className="flex-1  mx-1 "
+            className="flex-1 min-w-0 mx-2 bg-transparent outline-none text-lg "
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -30,7 +30,7 @@ const SearchBar = () => {
         </div>
         <div>
           <button
-            className="mx-2 bg-lime-200 border-lime-300 border-2 rounded-md p-2 text-lime-600"
+            className="mx-2 bg-gray-200 border-gray-300 border-2 rounded-md p-2 text-gray-600"
             onClick={handleSearchRecipe}
           >
             Search Recipe
