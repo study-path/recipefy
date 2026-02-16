@@ -3,7 +3,7 @@ const RecipeCard = ({ recipe }) => {
   return (
     <div className="flex flex-wrap justify-center ">
       <Link
-        to="/recipeDetail"
+        to={`/recipeDetail/${recipe.id}`}
         key={recipe.id}
         className="flex flex-col m-1 border-2 rounded-md w-[240px] border-gray-300 hover:shadow-xl  "
       >
