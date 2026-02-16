@@ -4,7 +4,7 @@ const HomePage = () => {
   return (
     <>
       <div className="flex flex-col items-center ">
-        <div className="text-6xl m-4 text-gray-600">Recipify </div>
+        <div className="text-6xl m-4 text-gray-800">Recipify </div>
         <SearchBar />
       </div>
     </>

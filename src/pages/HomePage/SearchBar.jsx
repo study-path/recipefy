@@ -1,18 +1,17 @@
 import { useState } from "react";
-import SearchResultPage from "./SearchResultPage";
+import SearchResult from "./SearchResult";
 
 const SearchBar = () => {
-  const [recipes, setRecipes] = useState([]);
+  const [searchString, setSearchString] = useState();
   const [input, setInput] = useState("");
 
-  const handleSearchRecipe = () => {
-    recipes.push(input);
-    setRecipes([...recipes], input);
+  const searchRecipes = () => {
+    setSearchString(input);
   };
 
   const handleInputKeyDown = (a) => {
     if (a.keyCode == 13) {
-      handleSearchRecipe();
+      searchRecipes();
     }
   };
   return (
@@ -30,14 +29,14 @@ const SearchBar = () => {
         </div>
         <div>
           <button
-            className="mx-2 bg-gray-200 border-gray-300 border-2 rounded-md p-2 text-gray-600"
-            onClick={handleSearchRecipe}
+            className="mx-2 bg-gray-200 border-gray-300 border-2 rounded-full p-2 text-gray-800 cursor-pointer"
+            onClick={searchRecipes}
           >
             Search Recipe
           </button>
         </div>
       </div>
-      <SearchResultPage recipes={recipes} />
+      {searchString && <SearchResult searchString={input} />}
     </>
   );
 };
