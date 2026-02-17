@@ -3,9 +3,10 @@ import SearchBar from "./SearchBar";
 import SearchResult from "./SearchResult";
 
 const HomePage = () => {
-  const [results, setResults] = useState(null);
+  const [searchResult, setSearchResult] = useState(null);
   const [offset, setOffset] = useState(-1);
-  const hasResults = results != null;
+  const [cuisines, setCuisines] = useState([]);
+  const hasResults = searchResult != null;
 
   return (
     <>
@@ -16,15 +17,20 @@ const HomePage = () => {
       >
         <div className="text-6xl m-4 text-gray-800">Recipify</div>
         <SearchBar
-          onSearch={setResults}
+          setSearchResult={setSearchResult}
           offset={offset}
           setOffset={setOffset}
+          cuisines={cuisines}
+          setCuisines={setCuisines}
         />
       </div>
       <SearchResult
-        searchResult={results}
+        searchResult={searchResult}
+        setSearchResult={setSearchResult}
         offset={offset}
         setOffset={setOffset}
+        cuisines={cuisines}
+        setCuisines={setCuisines}
       />
     </>
   );

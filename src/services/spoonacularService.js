@@ -1,14 +1,14 @@
 import axios from "axios";
 
-const spoonacularKey = "cfcdc5248fc04d358f0eb1ff366d3ee6";
+const spoonacularKey = "3b844fbedc344ba0bd11df2b554eef77";
 const headers = {
   "Content-Type": "application/json",
   "x-api-key": spoonacularKey,
 };
 const baseUrl = "https://api.spoonacular.com/recipes";
 
-export async function getRecipes(searchString, offset) {
-  const url = `${baseUrl}/complexSearch?number=5&offset=${offset}&query=${encodeURIComponent(searchString)}`;
+export async function getRecipes(searchString, offset, cuisines) {
+  const url = `${baseUrl}/complexSearch?number=5&offset=${offset}&query=${encodeURIComponent(searchString)}&cuisine=${cuisines.join(",")}`;
 
   return await axios
     .get(url, {

@@ -2,7 +2,13 @@ import { useEffect, useState, useRef } from "react";
 import { Toast } from "primereact/toast";
 import { getRecipes } from "./../../services/spoonacularService";
 
-const SearchBar = ({ onSearch, offset, setOffset }) => {
+const SearchBar = ({
+  setSearchResult,
+  offset,
+  setOffset,
+  cuisines,
+  setCuisines,
+}) => {
   const [searchString, setSearchString] = useState("");
   const toast = useRef(null);
 
@@ -12,7 +18,8 @@ const SearchBar = ({ onSearch, offset, setOffset }) => {
 
   const handleInputKeyDown = (a) => {
     setOffset(-1);
-    onSearch(null);
+    setSearchResult(null);
+    setCuisines([]);
     if (a.keyCode == 13) {
       onSearchRecipes();
     }
@@ -20,8 +27,8 @@ const SearchBar = ({ onSearch, offset, setOffset }) => {
 
   const searchRecipes = async () => {
     try {
-      const recipes = await getRecipes(searchString, offset);
-      onSearch(recipes);
+      const recipes = await getRecipes(searchString, offset, cuisines);
+      setSearchResult(recipes);
     } catch (error) {
       toast.current.show({
         severity: "error",
@@ -36,7 +43,7 @@ const SearchBar = ({ onSearch, offset, setOffset }) => {
     if (offset != -1) {
       searchRecipes();
     }
-  }, [offset]);
+  }, [offset, cuisines]);
 
   return (
     <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center m-2 gap-2 w-full px-4">
