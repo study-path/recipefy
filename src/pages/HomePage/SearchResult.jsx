@@ -77,7 +77,7 @@ const SearchResult = ({
             <button
               className="w-24 bg-gray-200 border-gray-300 border-2 rounded-full text-gray-800 cursor-pointer hover:bg-gray-300"
               onClick={goNextPage}
-              disabled={currentPageNumber > searchResult.totalResults / 5}
+              disabled={currentPageNumber >= searchResult.totalResults / 5}
             >
               Next
             </button>

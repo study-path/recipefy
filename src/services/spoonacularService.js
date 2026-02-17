@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const spoonacularKey = "3b844fbedc344ba0bd11df2b554eef77";
+const spoonacularKey = "78fb04f8665647f3aadaf13a159c1807";
 const headers = {
   "Content-Type": "application/json",
   "x-api-key": spoonacularKey,
