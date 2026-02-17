@@ -1,71 +1,42 @@
 import RecipeCard from "./RecipeCard";
-import { getRecipes } from "../../services/spoonacularService";
 
-const SearchResultPage = ({ searchString }) => {
-  const recipes = [
-    {
-      id: 716429,
-      title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
-      image: "https://img.spoonacular.com/recipes/716429-312x231.jpg",
-      imageType: "jpg",
-    },
-    {
-      id: 715538,
-      title: "What to make for dinner tonight?? Bruschetta Style Pork & Pasta",
-      image: "https://img.spoonacular.com/recipes/715538-312x231.jpg",
-      imageType: "jpg",
-    },
-    {
-      id: 716429,
-      title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
-      image: "https://img.spoonacular.com/recipes/716429-312x231.jpg",
-      imageType: "jpg",
-    },
-    {
-      id: 715538,
-      title: "What to make for dinner tonight?? Bruschetta Style Pork & Pasta",
-      image: "https://img.spoonacular.com/recipes/715538-312x231.jpg",
-      imageType: "jpg",
-    },
-    {
-      id: 716429,
-      title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
-      image: "https://img.spoonacular.com/recipes/716429-312x231.jpg",
-      imageType: "jpg",
-    },
-    {
-      id: 715538,
-      title: "What to make for dinner tonight?? Bruschetta Style Pork & Pasta",
-      image: "https://img.spoonacular.com/recipes/715538-312x231.jpg",
-      imageType: "jpg",
-    },
-    {
-      id: 716429,
-      title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
-      image: "https://img.spoonacular.com/recipes/716429-312x231.jpg",
-      imageType: "jpg",
-    },
-    {
-      id: 715538,
-      title: "What to make for dinner tonight?? Bruschetta Style Pork & Pasta",
-      image: "https://img.spoonacular.com/recipes/715538-312x231.jpg",
-      imageType: "jpg",
-    },
-  ];
-  // let recipesList = getRecipes(searchString);
-  let recipesList = getRecipes(recipes);
-
+const SearchResult = ({ searchResult, offset, setOffset }) => {
   return (
     <>
-      <div className="flex flex-wrap justify-center ">
-        {recipesList.map((recipe) => (
-          <div className=" my-2" key={recipe.id}>
-            <RecipeCard recipe={recipe} />
+      {searchResult && (
+        <div>
+          <div className=" flex flex-wrap justify-center gap-4">
+            {searchResult.results.map((recipe) => (
+              <div key={recipe.id} className="w-[230px]">
+                <RecipeCard recipe={recipe} />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+          <div className="m-4 flex justify-center">
+            <button
+              onClick={() => {
+                setOffset(offset - 5);
+              }}
+              disabled={offset - 5 < 0}
+            >
+              back
+            </button>
+            <button
+              onClick={() => {
+                setOffset(offset + 5);
+              }}
+              disabled={offset + 5 > searchResult.totalResults}
+            >
+              forward
+            </button>
+            <div className="px-10">
+              Total Pages: {searchResult.totalResults}
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
 
-export default SearchResultPage;
+export default SearchResult;
