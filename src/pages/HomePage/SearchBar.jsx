@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { Toast } from "primereact/toast";
 import { getRecipes } from "./../../services/spoonacularService";
 
 const SearchBar = ({ onSearch, offset, setOffset }) => {
   const [searchString, setSearchString] = useState("");
+  const toast = useRef(null);
 
   const onSearchRecipes = async () => {
     setOffset(0);
@@ -16,9 +18,17 @@ const SearchBar = ({ onSearch, offset, setOffset }) => {
   };
 
   const searchRecipes = async () => {
-    const recipes = await getRecipes(searchString, offset);
-    console.log(1111, recipes);
-    onSearch(recipes);
+    try {
+      const recipes = await getRecipes(searchString, offset);
+      onSearch(recipes);
+    } catch (error) {
+      toast.current.show({
+        severity: "error",
+        summary: "Error during recipe searching",
+        detail: error.message,
+        life: 3000,
+      });
+    }
   };
 
   useEffect(() => {
@@ -30,6 +40,7 @@ const SearchBar = ({ onSearch, offset, setOffset }) => {
 
   return (
     <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center m-2 gap-2 w-full px-4">
+      <Toast ref={toast} position="top-right" />
       <div className="flex border-2 border-gray-300 bg-gray-200 m-2 p-2 rounded-full w-full sm:flex-1 sm:max-w-4xl items-center">
         <i className="pi pi-search text-gray-400 text-lg px-2"></i>
         <input

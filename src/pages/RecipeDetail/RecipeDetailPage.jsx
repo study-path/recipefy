@@ -1,9 +1,8 @@
-// import { recipeDetail } from "../detailRecipeData";
-import axios from "axios";
 import { useParams } from "react-router";
 import { useState, useEffect, useRef } from "react";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { Toast } from "primereact/toast";
+import { getRecipeDetails } from "./../../services/spoonacularService";
 
 const RecipeDetailPage = () => {
   const { id } = useParams();
@@ -23,25 +22,21 @@ const RecipeDetailPage = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(`https://api.spoonacular.com/recipes/${id}/information`, {
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": "508a4347bccb4a66b473ccd32d647515",
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setRecipeDetail(response.data);
-      })
-      .catch((error) => {
+    const load = async () => {
+      try {
+        const result = await getRecipeDetails(id);
+        setRecipeDetail(result);
+      } catch (error) {
         toast.current.show({
           severity: "error",
           summary: "Error during fetching recipe details",
           detail: error.message,
           life: 3000,
         });
-      });
+      }
+    };
+
+    load();
   }, []);
 
   return (
@@ -86,15 +81,17 @@ const RecipeDetailPage = () => {
                 </div>
               </div>
               <div className="my-4 text-lg">
-                <div>
-                  <i className="pi pi-clock"></i>
-                  <span className="px-3">
-                    {recipeDetail.preparationMinutes} min prep
-                  </span>
-                </div>
+                {recipeDetail.readyInMinutes && (
+                  <div>
+                    <i className="pi pi-clock"></i>
+                    <span className="px-3">
+                      ready in {recipeDetail.readyInMinutes} min
+                    </span>
+                  </div>
+                )}
                 <div>
                   <i className="pi pi-users"></i>
-                  <span className="px-3">{recipeDetail.servings} servings</span>
+                  <span className="px-3">for {recipeDetail.servings}</span>
                 </div>
               </div>
             </div>
