@@ -4,7 +4,7 @@ import SearchResult from "./SearchResult";
 
 const HomePage = () => {
   const [results, setResults] = useState(null);
-  const [offset, setOffset] = useState(0);
+  const [offset, setOffset] = useState(-1);
   const hasResults = results != null;
 
   return (

@@ -1,6 +1,23 @@
+import { useEffect, useState } from "react";
 import RecipeCard from "./RecipeCard";
 
 const SearchResult = ({ searchResult, offset, setOffset }) => {
+  const [currentPageNumber, setCurrentPageNumber] = useState(1);
+
+  const goPreviousPage = () => {
+    setOffset(offset - 5);
+    setCurrentPageNumber(currentPageNumber - 1);
+  };
+
+  const goNextPage = () => {
+    setOffset(offset + 5);
+    setCurrentPageNumber(currentPageNumber + 1);
+  };
+
+  useEffect(() => {
+    setCurrentPageNumber(Math.floor(offset / 5) + 1);
+  }, [offset]);
+
   return (
     <>
       {searchResult && (
@@ -14,23 +31,22 @@ const SearchResult = ({ searchResult, offset, setOffset }) => {
           </div>
           <div className="m-4 flex justify-center">
             <button
-              onClick={() => {
-                setOffset(offset - 5);
-              }}
-              disabled={offset - 5 < 0}
+              type="button"
+              onClick={goPreviousPage}
+              disabled={currentPageNumber === 1}
             >
-              back
+              Previous
             </button>
+            <div className="px-10">Current Page: {currentPageNumber}</div>
             <button
-              onClick={() => {
-                setOffset(offset + 5);
-              }}
-              disabled={offset + 5 > searchResult.totalResults}
+              className="w-24 bg-gray-200 border-gray-300 border-2 rounded-full text-gray-800 cursor-pointer hover:bg-gray-300"
+              onClick={goNextPage}
+              disabled={currentPageNumber > searchResult.totalResults / 5}
             >
-              forward
+              Next
             </button>
             <div className="px-10">
-              Total Pages: {searchResult.totalResults}
+              Total Recipes: {searchResult.totalResults}
             </div>
           </div>
         </div>

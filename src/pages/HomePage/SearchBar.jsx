@@ -8,10 +8,10 @@ const SearchBar = ({ onSearch, offset, setOffset }) => {
 
   const onSearchRecipes = async () => {
     setOffset(0);
-    searchRecipes();
   };
 
   const handleInputKeyDown = (a) => {
+    setOffset(-1);
     if (a.keyCode == 13) {
       onSearchRecipes();
     }
@@ -32,8 +32,7 @@ const SearchBar = ({ onSearch, offset, setOffset }) => {
   };
 
   useEffect(() => {
-    console.log("offset", offset);
-    if (searchString) {
+    if (offset != -1) {
       searchRecipes();
     }
   }, [offset]);
