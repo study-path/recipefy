@@ -12,6 +12,7 @@ const SearchBar = ({ onSearch, offset, setOffset }) => {
 
   const handleInputKeyDown = (a) => {
     setOffset(-1);
+    onSearch(null);
     if (a.keyCode == 13) {
       onSearchRecipes();
     }
