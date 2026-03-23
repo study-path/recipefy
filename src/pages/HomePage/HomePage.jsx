@@ -24,6 +24,7 @@ const HomePage = () => {
           setCuisines={setCuisines}
         />
       </div>
+
       <SearchResult
         searchResult={searchResult}
         setSearchResult={setSearchResult}

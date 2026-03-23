@@ -40,28 +40,35 @@ const SearchResult = ({
   return (
     <>
       {searchResult && (
-        <div>
-          <div className="columns-6 my-10 p-6 ">
-            {cuisineList.map((cuisine) => (
-              <label key={cuisine} className="flex items-center gap-2 mb-2">
-                <input
-                  type="checkbox"
-                  value={cuisine}
-                  checked={cuisines.includes(cuisine)}
-                  onChange={onChangeCuisine}
-                />
-                <span>{cuisine}</span>
-              </label>
-            ))}
+        <div className="flex flex-col w-full">
+          <div className="flex flex-wrap  gap-4 my-6 px-2 border-2 border-gray-300 rounded-md">
+            {cuisineList.map((cuisine, index) => {
+              const id = `cuisine-${index}`;
+              return (
+                <div key={cuisine} className="flex items-center ">
+                  <input
+                    id={id}
+                    type="checkbox"
+                    value={cuisine}
+                    checked={cuisines.includes(cuisine)}
+                    onChange={onChangeCuisine}
+                  />
+                  <label htmlFor={id} className=" m-2">
+                    {cuisine}
+                  </label>
+                </div>
+              );
+            })}
           </div>
-          <div className=" flex flex-wrap justify-center gap-4">
+          <div className="pb-2 text-xl">
+            Total Recipes: {searchResult.totalResults}
+          </div>
+          <div className=" flex flex-wrap justify-between">
             {searchResult.results.map((recipe) => (
-              <div key={recipe.id} className="w-[230px]">
-                <RecipeCard recipe={recipe} />
-              </div>
+              <RecipeCard key={recipe.id} recipe={recipe} />
             ))}
           </div>
-          <div className="m-4 flex justify-center">
+          <div className="m-8 flex justify-center items-center">
             <button
               className="w-24 bg-gray-200 border-gray-300 border-2 rounded-full text-gray-800 cursor-pointer hover:bg-gray-300"
               type="button"
@@ -81,9 +88,6 @@ const SearchResult = ({
             >
               Next
             </button>
-            <div className="px-10">
-              Total Recipes: {searchResult.totalResults}
-            </div>
           </div>
         </div>
       )}
