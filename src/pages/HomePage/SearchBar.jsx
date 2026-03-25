@@ -8,6 +8,8 @@ const SearchBar = ({
   setOffset,
   cuisines,
   setCuisines,
+  isLoading,
+  setIsLoading,
 }) => {
   const [searchString, setSearchString] = useState("");
   const toast = useRef(null);
@@ -27,8 +29,10 @@ const SearchBar = ({
 
   const searchRecipes = async () => {
     try {
+      setIsLoading(!isLoading);
       const recipes = await getRecipes(searchString, offset, cuisines);
       setSearchResult(recipes);
+      setIsLoading(false);
     } catch (error) {
       toast.current.show({
         severity: "error",
