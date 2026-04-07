@@ -16,7 +16,7 @@ const HomePage = () => {
           hasResults ? "justify-start py-6" : "justify-center h-screen"
         }`}
       >
-        <div className="text-6xl m-4 text-gray-800">Recipify</div>
+        <div className="text-6xl m-4 text-gray-800 ">Recipify</div>
         <SearchBar
           setSearchResult={setSearchResult}
           offset={offset}
@@ -27,21 +27,22 @@ const HomePage = () => {
           setIsLoading={setIsLoading}
         />
       </div>
-
-      {isLoading ? (
-        <div className="text-center text-gray-500">
-          <ProgressSpinner />
-        </div>
-      ) : (
-        <SearchResult
-          searchResult={searchResult}
-          setSearchResult={setSearchResult}
-          offset={offset}
-          setOffset={setOffset}
-          cuisines={cuisines}
-          setCuisines={setCuisines}
-        />
-      )}
+      <div className="flex px-30">
+        {isLoading ? (
+          <div className="text-center text-gray-500">
+            <ProgressSpinner />
+          </div>
+        ) : (
+          <SearchResult
+            searchResult={searchResult}
+            setSearchResult={setSearchResult}
+            offset={offset}
+            setOffset={setOffset}
+            cuisines={cuisines}
+            setCuisines={setCuisines}
+          />
+        )}
+      </div>
     </>
   );
 };

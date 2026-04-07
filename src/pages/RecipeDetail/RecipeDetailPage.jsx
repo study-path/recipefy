@@ -40,11 +40,11 @@ const RecipeDetailPage = () => {
   }, []);
 
   return (
-    <div className="p-4 h-screen">
+    <div className="p-4 h-screen border-3 border-green-500 px-20 ">
       <Toast ref={toast} position="top-right" />
       {recipeDetail ? (
         <div>
-          <div className="flex gap-4 p-4">
+          <div className="flex gap-4 p-4 ">
             <div className="flex-1">
               <h1 className="my-2 text-4xl text-gray-800">
                 {recipeDetail.title}

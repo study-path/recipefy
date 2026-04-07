@@ -40,7 +40,7 @@ const SearchResult = ({
   return (
     <>
       {searchResult && (
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col ">
           <div className="flex flex-wrap  gap-4 my-6 px-2 border-2 border-gray-300 rounded-md">
             {cuisineList.map((cuisine, index) => {
               const id = `cuisine-${index}`;
@@ -63,7 +63,7 @@ const SearchResult = ({
           <div className="pb-2 text-xl">
             Total Recipes: {searchResult.totalResults}
           </div>
-          <div className=" flex flex-wrap justify-between">
+          <div className="flex flex-wrap justify-between">
             {searchResult.results.map((recipe) => (
               <RecipeCard key={recipe.id} recipe={recipe} />
             ))}
