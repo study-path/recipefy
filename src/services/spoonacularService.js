@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const spoonacularKey = "78fb04f8665647f3aadaf13a159c1807";
+const spoonacularKey = import.meta.env.VITE_SPOONACULAR_API_KEY;
+console.log("Spoonacular API Key:", spoonacularKey);
+
 const headers = {
   "Content-Type": "application/json",
   "x-api-key": spoonacularKey,

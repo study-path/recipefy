@@ -4,16 +4,21 @@ import HomePage from "./pages/HomePage/HomePage";
 import RecipeDetailPage from "./pages/RecipeDetail/RecipeDetailPage";
 import "primereact/resources/themes/lara-light-blue/theme.css";
 import NavBar from "./shared/NavBar.jsx";
+import Footer from "./shared/Footer.jsx";
 
 function App() {
   return (
     <BrowserRouter>
-      <NavBar />
-      <Routes>
-        <Route index element={<HomePage />} />
-        <Route path="/recipeDetail/:id" element={<RecipeDetailPage />} />
-        <Route path="/about" element={<div>About</div>} />
-      </Routes>
+      <div className="flex flex-col h-screen border-3 border-green-600">
+        <NavBar />
+        <main className="flex flex-1 items-center justify-center border-3 border-yellow-600">
+          <Routes>
+            <Route index element={<HomePage />} />
+            <Route path="/recipeDetail/:id" element={<RecipeDetailPage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 }

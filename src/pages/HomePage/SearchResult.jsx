@@ -40,7 +40,7 @@ const SearchResult = ({
   return (
     <>
       {searchResult && (
-        <div className="flex flex-col ">
+        <div className="flex flex-col w-full max-w-5xl border-3 border-green-600">
           <div className="flex flex-wrap  gap-4 my-6 px-2 border-2 border-gray-300 rounded-md">
             {cuisineList.map((cuisine, index) => {
               const id = `cuisine-${index}`;

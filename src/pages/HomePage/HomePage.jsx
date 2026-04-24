@@ -10,13 +10,12 @@ const HomePage = () => {
   const hasResults = searchResult != null;
   const [isLoading, setIsLoading] = useState(false);
   return (
-    <>
+    <div className="flex flex-col items-center gap-6 pt-6 border-3 border-blue-700">
       <div
-        className={`flex flex-col items-center ${
-          hasResults ? "justify-start py-6" : "justify-center h-screen"
+        className={`flex flex-col items-center  border-3 border-red-600 ${
+          hasResults ? "justify-start py-6" : "justify-center "
         }`}
       >
-        <div className="text-6xl m-4 text-gray-800 ">Recipify</div>
         <SearchBar
           setSearchResult={setSearchResult}
           offset={offset}
@@ -27,9 +26,9 @@ const HomePage = () => {
           setIsLoading={setIsLoading}
         />
       </div>
-      <div className="flex px-30">
+      <div className="flex justify-center items-center  ">
         {isLoading ? (
-          <div className="text-center text-gray-500">
+          <div className="flex  ">
             <ProgressSpinner />
           </div>
         ) : (
@@ -43,7 +42,7 @@ const HomePage = () => {
           />
         )}
       </div>
-    </>
+    </div>
   );
 };
 
