@@ -4,24 +4,24 @@ import SearchResult from "./SearchResult";
 import { ProgressSpinner } from "primereact/progressspinner";
 
 const HomePage = () => {
+  console.log("HomePage render", new Date().toLocaleTimeString());
   const [searchResult, setSearchResult] = useState(null);
-  const [offset, setOffset] = useState(-1);
+  const [page, setPage] = useState(1);
   const [cuisines, setCuisines] = useState([]);
   const hasResults = searchResult != null;
   const [isLoading, setIsLoading] = useState(false);
+
   return (
-    <div className="flex flex-col items-center gap-6 pt-6 border-3 border-blue-700">
+    <div className="flex flex-col items-center gap-6 pt-6 ">
       <div
-        className={`flex flex-col items-center  border-3 border-red-600 ${
+        className={`flex flex-col items-center ${
           hasResults ? "justify-start py-6" : "justify-center "
         }`}
       >
         <SearchBar
           setSearchResult={setSearchResult}
-          offset={offset}
-          setOffset={setOffset}
+          page={page}
           cuisines={cuisines}
-          setCuisines={setCuisines}
           isLoading={isLoading}
           setIsLoading={setIsLoading}
         />
@@ -35,8 +35,8 @@ const HomePage = () => {
           <SearchResult
             searchResult={searchResult}
             setSearchResult={setSearchResult}
-            offset={offset}
-            setOffset={setOffset}
+            page={page}
+            setPage={setPage}
             cuisines={cuisines}
             setCuisines={setCuisines}
           />

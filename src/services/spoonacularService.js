@@ -9,12 +9,19 @@ const headers = {
 };
 const baseUrl = "https://api.spoonacular.com/recipes";
 
-export async function getRecipes(searchString, offset, cuisines) {
-  const url = `${baseUrl}/complexSearch?number=5&offset=${offset}&query=${encodeURIComponent(searchString)}&cuisine=${cuisines.join(",")}`;
+export async function getRecipes(searchString, cuisines, page) {
+  let offset = (page - 1) * 5;
+  const url = `${baseUrl}/complexSearch?`;
 
   return await axios
     .get(url, {
       headers,
+      params: {
+        number: 5,
+        offset,
+        query: searchString,
+        cuisine: Array.isArray(cuisines) ? cuisines.join(",") : cuisines,
+      },
     })
     .then((response) => response.data);
 }

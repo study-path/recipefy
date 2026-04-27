@@ -4,22 +4,12 @@ import { cuisineList } from "./cuisineList";
 
 const SearchResult = ({
   searchResult,
-  offset,
-  setOffset,
+  page,
+  setPage,
   cuisines,
   setCuisines,
 }) => {
-  const [currentPageNumber, setCurrentPageNumber] = useState(1);
-
-  const goPreviousPage = () => {
-    setOffset(offset - 5);
-    setCurrentPageNumber(currentPageNumber - 1);
-  };
-
-  const goNextPage = () => {
-    setOffset(offset + 5);
-    setCurrentPageNumber(currentPageNumber + 1);
-  };
+  console.log("SearchResult render", new Date().toLocaleTimeString());
 
   const onChangeCuisine = (e) => {
     const { value, checked } = e.target;
@@ -33,14 +23,10 @@ const SearchResult = ({
     });
   };
 
-  useEffect(() => {
-    setCurrentPageNumber(Math.floor(offset / 5) + 1);
-  }, [offset]);
-
   return (
     <>
       {searchResult && (
-        <div className="flex flex-col w-full max-w-5xl border-3 border-green-600">
+        <div className="flex flex-col w-full max-w-5xl ">
           <div className="flex flex-wrap  gap-4 my-6 px-2 border-2 border-gray-300 rounded-md">
             {cuisineList.map((cuisine, index) => {
               const id = `cuisine-${index}`;
@@ -60,7 +46,7 @@ const SearchResult = ({
               );
             })}
           </div>
-          <div className="pb-2 text-xl">
+          <div className="pb-2 text-xl text-gray-600">
             Total Recipes: {searchResult.totalResults}
           </div>
           <div className="flex flex-wrap justify-between">
@@ -70,21 +56,24 @@ const SearchResult = ({
           </div>
           <div className="m-8 flex justify-center items-center">
             <button
-              className="w-24 bg-gray-200 border-gray-300 border-2 rounded-full text-gray-800 cursor-pointer hover:bg-gray-300"
+              className="w-24 bg-gray-200 border-lime-500 border-2 rounded-full text-xl text-lime-600 cursor-pointer hover:bg-gray-300"
               type="button"
-              onClick={goPreviousPage}
-              disabled={currentPageNumber === 1}
+              onClick={() => {
+                setPage(page - 1);
+              }}
+              disabled={page === 1}
             >
               Previous
             </button>
-            <div className="px-10">
-              Current Page:{" "}
-              {searchResult.totalResults === 0 ? 1 : currentPageNumber}
+            <div className="px-10 text-gray-600">
+              Page {page} of {Math.ceil(searchResult.totalResults / 5)}
             </div>
             <button
-              className="w-24 bg-gray-200 border-gray-300 border-2 rounded-full text-gray-800 cursor-pointer hover:bg-gray-300"
-              onClick={goNextPage}
-              disabled={currentPageNumber >= searchResult.totalResults / 5}
+              className="w-24 bg-gray-200 border-lime-500 border-2 rounded-full text-xl text-lime-600 cursor-pointer hover:bg-gray-300"
+              onClick={() => {
+                setPage(page + 1);
+              }}
+              disabled={page === Math.ceil(searchResult.totalResults / 5)}
             >
               Next
             </button>

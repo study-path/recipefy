@@ -4,33 +4,26 @@ import { getRecipes } from "./../../services/spoonacularService";
 
 const SearchBar = ({
   setSearchResult,
-  offset,
-  setOffset,
+  page,
   cuisines,
-  setCuisines,
   isLoading,
   setIsLoading,
 }) => {
+  console.log("SearchBar render", new Date().toLocaleTimeString());
+
   const [searchString, setSearchString] = useState("");
   const toast = useRef(null);
+  const isFirstLoad = useRef(true);
 
-  const onSearchRecipes = async () => {
-    setOffset(0);
-  };
-
-  const handleInputKeyDown = (a) => {
-    setOffset(-1);
-    setSearchResult(null);
-    setCuisines([]);
-    if (a.keyCode == 13) {
-      onSearchRecipes();
-    }
+  const onSubmit = (e) => {
+    e.preventDefault();
+    searchRecipes();
   };
 
   const searchRecipes = async () => {
     try {
       setIsLoading(!isLoading);
-      const recipes = await getRecipes(searchString, offset, cuisines);
+      const recipes = await getRecipes(searchString, cuisines, page);
       setSearchResult(recipes);
       setIsLoading(false);
     } catch (error) {
@@ -44,32 +37,36 @@ const SearchBar = ({
   };
 
   useEffect(() => {
-    if (offset != -1) {
+    console.log("SearchBar, useEffect triggered", { page, cuisines });
+
+    if (isFirstLoad.current) {
+      isFirstLoad.current = false;
+    } else {
       searchRecipes();
     }
-  }, [offset, cuisines]);
+  }, [page, cuisines]);
 
   return (
-    <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center m-2 gap-2 w-full px-4">
+    <div className="flex flex-col justify-center items-stretch sm:items-center m-2 gap-2  px-4">
       <Toast ref={toast} position="top-right" />
-      <div className="flex border-2 border-gray-300 bg-gray-200 m-2 p-2 rounded-full w-full sm:flex-1 sm:max-w-4xl items-center">
-        <i className="pi pi-search text-gray-400 text-lg px-2"></i>
+      <form onSubmit={onSubmit} className="flex ">
         <input
-          className="flex-1 min-w-0 mx-2 bg-transparent outline-none text-lg "
+          id="search-input"
+          placeholder="e.g. tomato, basil..."
+          className="border-2 border-gray-300 bg-gray-200 m-2 p-2 rounded-full w-80 items-center focus:outline focus:border-lime-500 "
           type="text"
+          autoFocus
           value={searchString}
           onChange={(e) => setSearchString(e.target.value)}
-          onKeyDown={handleInputKeyDown}
         />
-      </div>
-      <div>
         <button
-          className="mx-2 bg-gray-200 border-gray-300 border-2 rounded-full p-2 text-gray-800 cursor-pointer hover:bg-gray-300"
-          onClick={onSearchRecipes}
+          className=" bg-gray-400 border-lime-500 border-2 rounded-full m-2 p-2 cursor-pointer hover:bg-lime-500 sm:flex-1
+          sm:max-w-4xl
+          items-center"
         >
           Search Recipe
         </button>
-      </div>
+      </form>
     </div>
   );
 };
