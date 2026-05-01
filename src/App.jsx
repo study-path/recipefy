@@ -10,9 +10,9 @@ import Footer from "./shared/Footer.jsx";
 function App() {
   return (
     <BrowserRouter>
-      <div className=" flex flex-col">
+      <div className="flex flex-col min-h-screen overflow-x-hidden border-3 border-yellow-800   ">
         <NavBar />
-        <main className="flex flex-1 items-center justify-center min-h-[calc(100vh-140px)]">
+        <main className="flex-1 w-full max-w-screen-xl mx-auto px-4 ">
           <Routes>
             <Route index element={<HomePage />} />
             <Route path="/recipeDetail/:id" element={<RecipeDetailPage />} />

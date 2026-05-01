@@ -12,7 +12,7 @@ const HomePage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <div className="flex flex-col items-center gap-6 pt-6 ">
+    <div className="flex flex-col  w-full gap-6  ">
       <div
         className={`flex flex-col items-center ${
           hasResults ? "justify-start py-6" : "justify-center "
@@ -26,7 +26,7 @@ const HomePage = () => {
           setIsLoading={setIsLoading}
         />
       </div>
-      <div className="flex justify-center items-center  ">
+      <div className="flex justify-center items-center px-2">
         {isLoading ? (
           <div className="flex  ">
             <ProgressSpinner />

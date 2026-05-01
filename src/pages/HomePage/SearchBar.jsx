@@ -47,9 +47,12 @@ const SearchBar = ({
   }, [page, cuisines]);
 
   return (
-    <div className="flex flex-col justify-center items-stretch sm:items-center m-2 gap-2  px-4">
+    <div className="flex flex-col items-center m-2 gap-2 px-4 ">
+      <div className="text-lg font-bubblegum text-lime-600">
+        Enter ingredients and we'll find the perfect recipe.
+      </div>
       <Toast ref={toast} position="top-right" />
-      <form onSubmit={onSubmit} className="flex ">
+      <form onSubmit={onSubmit} className="flex flex-col md:flex-row  ">
         <input
           id="search-input"
           placeholder="e.g. tomato, basil..."
@@ -60,9 +63,8 @@ const SearchBar = ({
           onChange={(e) => setSearchString(e.target.value)}
         />
         <button
-          className=" bg-gray-400 border-lime-500 border-2 rounded-full m-2 p-2 cursor-pointer hover:bg-lime-500 sm:flex-1
-          sm:max-w-4xl
-          items-center"
+          className="bg-gray-400 border-lime-500 border-2 rounded-full m-2 p-2 cursor-pointer hover:bg-lime-500 
+          sm:item-centers"
         >
           Search Recipe
         </button>
