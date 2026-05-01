@@ -63,7 +63,8 @@ const SearchResult = ({
               }}
               disabled={page === 1}
             >
-              Previous
+              <span className="hidden sm:inline">Previous</span>
+              <span className="sm:hidden">←</span>
             </button>
             <div className="px-10 text-gray-600">
               Page {page} of {Math.ceil(searchResult.totalResults / 5)}
@@ -75,7 +76,8 @@ const SearchResult = ({
               }}
               disabled={page === Math.ceil(searchResult.totalResults / 5)}
             >
-              Next
+              <span className="hidden sm:inline">Next</span>
+              <span className="sm:hidden">→</span>
             </button>
           </div>
         </div>

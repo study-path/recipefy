@@ -12,10 +12,10 @@ const HomePage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <div className="flex flex-col  w-full gap-6  ">
+    <div className="flex flex-1 flex-col w-full gap-6">
       <div
         className={`flex flex-col items-center ${
-          hasResults ? "justify-start py-6" : "justify-center "
+          hasResults ? "justify-start py-6" : "flex-1 justify-center "
         }`}
       >
         <SearchBar
