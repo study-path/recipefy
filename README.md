@@ -37,7 +37,13 @@ Users can search recipes by keyword, filter by cuisine, browse paginated results
 - Step-by-step cooking instructions
 - Navigation back to search results
 
-
+## Technologies Used
+- React 19 + Vite
+- Tailwind CSS
+- React Router DOM
+- Axios
+- PrimeReact / PrimeIcons
+- Spoonacular API
 
 ## Getting started
 1. Clone the repo
