@@ -9,7 +9,7 @@ const SearchBar = ({
   isLoading,
   setIsLoading,
 }) => {
-  console.log("SearchBar render", new Date().toLocaleTimeString());
+  // console.log("SearchBar render", new Date().toLocaleTimeString());
 
   const [searchString, setSearchString] = useState("");
   const toast = useRef(null);
@@ -37,8 +37,6 @@ const SearchBar = ({
   };
 
   useEffect(() => {
-    console.log("SearchBar, useEffect triggered", { page, cuisines });
-
     if (isFirstLoad.current) {
       isFirstLoad.current = false;
     } else {

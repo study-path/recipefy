@@ -4,7 +4,6 @@ import SearchResult from "./SearchResult";
 import { ProgressSpinner } from "primereact/progressspinner";
 
 const HomePage = () => {
-  console.log("HomePage render", new Date().toLocaleTimeString());
   const [searchResult, setSearchResult] = useState(null);
   const [page, setPage] = useState(1);
   const [cuisines, setCuisines] = useState([]);
