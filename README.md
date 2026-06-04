@@ -1,6 +1,10 @@
 # Recipe Finder App
 🔗 **Live Demo:** [recipefy-app-portfolioproject.vercel.app](https://recipefy-app-portfolioproject.vercel.app/)
 
+![Alt text](<img width="1163" height="907" alt="image" src="https://github.com/user-attachments/assets/284ec621-6e37-4092-b844-9f31ff394909" />)
+
+
+
 A responsive recipe search application built with React.js using the Spoonacular API.
 Users can search recipes by keyword, filter by cuisine, browse paginated results, and view detailed cooking information for each recipe.
 
