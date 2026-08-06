@@ -1,15 +1,53 @@
-# React + Vite
+# Recipe Finder App
+A responsive recipe search application built with React.js using the Spoonacular API.
+Users can search recipes by keyword, filter by cuisine, browse paginated results, and view detailed cooking information for each recipe.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🔗 **Live Demo:** [recipefy-app-portfolioproject.vercel.app](https://recipefy-app-portfolioproject.vercel.app/)
 
-Currently, two official plugins are available:
+<img width="1163" height="907" alt="image" src="https://github.com/user-attachments/assets/284ec621-6e37-4092-b844-9f31ff394909" />
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Features
+### Home Page
+- Search recipes by keyword
+- If no keyword is entered, the app displays popular/all recipes
+- Filter recipes by cuisine
+- Pagination support (5 recipes per page)
+- Recipe cards with:
+  - Recipe name
+  - Recipe image
+- Search triggered by:
+  - Search button click
+  - Enter key press
+- Responsive layout for mobile and desktop
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Recipe Detail Page
+- Recipe name
+- Recipe image
+- Health information:
+  - Vegan
+  - Vegetarian
+  - Ketegonic
+  - Dairy-free
+  - Gluten-free
+  - Whole 30 
+  - Very Healthy
+- Ready In Minutes
+- Display recipe servings information (e.g. serves 2 people)
+  
+- Ingredients list with:
+  - Ingredient name
+  - Ingredient measure
+- Step-by-step cooking instructions
+- Navigation back to search results
+
+## Technologies Used
+- React 19 + Vite
+- Tailwind CSS
+- React Router DOM
+- Axios
+- PrimeReact / PrimeIcons
+- Spoonacular API
 
 ## Getting started
 1. Clone the repo
