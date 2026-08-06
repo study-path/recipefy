@@ -13,7 +13,7 @@ const NavBar = () => {
           />
         </Link>
         <div className=" mx-2 text-gray-800 font-bubblegum">
-          Recipi<span className="text-lime-500">fy</span>
+          Recipe<span className="text-lime-500">fy</span>
         </div>
       </div>
     </nav>
