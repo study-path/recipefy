@@ -4,7 +4,7 @@ Users can search recipes by keyword, filter by cuisine, browse paginated results
 
 🔗 **Live Demo:** [recipefy-app-portfolioproject.vercel.app](https://recipefy-app-portfolioproject.vercel.app/)
 
-<img width="1163" height="907" alt="image" src="https://github.com/user-attachments/assets/284ec621-6e37-4092-b844-9f31ff394909" />
+<img width="1100" height="907" alt="recipefy" src="https://github.com/user-attachments/assets/34e7c4fb-86c9-475c-a97d-c7fdbc03fb49" />
 
 
 ## Features
